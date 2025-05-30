@@ -1,15 +1,10 @@
-=====================================================
-  ANÁLISIS DE REDES DE TRANSPORTE PARA QGIS
-=====================================================
+# ANÁLISIS DE REDES DE TRANSPORTE PARA QGIS
 
 QGIS Version: 3.16+
 
 Un plugin para QGIS que provee un conjunto de herramientas potentes y fáciles de usar para realizar análisis de redes de transporte. Ideal para planificadores urbanos, logistas, geógrafos y cualquier profesional que trabaje con datos de redes viales.
 
-
-*****************************************************
-  TABLA DE CONTENIDOS
-*****************************************************
+## TABLA DE CONTENIDOS
 
 1. Descripción General
 2. Funcionalidades Principales
@@ -22,24 +17,24 @@ Un plugin para QGIS que provee un conjunto de herramientas potentes y fáciles d
    - Herramienta 3: Determinación de Utilidad Más Cercana (DUMC)
 6. Para Desarrolladores
 7. Licencia
-8. Autor
+8. Autores
 
 -----------------------------------------------------
 
 
-DESCRIPCIÓN GENERAL
+## DESCRIPCIÓN GENERAL
 -------------------
 Este plugin integra tres de los análisis de redes más comunes directamente en la interfaz de QGIS, permitiendo a los usuarios aprovechar sus propias capas vectoriales para obtener resultados precisos y geográficamente representados. Los algoritmos están construidos sobre librerías robustas como GeoPandas y NetworkX para garantizar un rendimiento y precisión óptimos.
 
 
-FUNCIONALIDADES PRINCIPALES
+## FUNCIONALIDADES PRINCIPALES
 ---------------------------
 - Determinación de Ruta Óptima (DRO): Calcula la ruta más rápida (menor costo) entre múltiples pares de puntos a través de una red vial.
 - Determinación de Área de Influencia (DAI): Genera isócronas o áreas de servicio, mostrando qué tan lejos se puede llegar desde un punto central dado un umbral de costo (tiempo o distancia).
 - Determinación de Utilidad Más Cercana (DUMC): Para un conjunto de orígenes, identifica cuál de las "utilidades" o destinos disponibles es el más cercano y traza la ruta óptima hacia él.
 
 
-REQUISITOS
+## REQUISITOS
 ----------
 Antes de instalar, asegúrate de cumplir con los siguientes requisitos:
 
@@ -53,7 +48,7 @@ Antes de instalar, asegúrate de cumplir con los siguientes requisitos:
    NOTA: Para instalar estas librerías, puedes usar la terminal OSGeo4W Shell que viene con la instalación de QGIS en Windows, o acceder a la consola de Python dentro de QGIS. Un comando típico sería 'pip install geopandas networkx shapely'.
 
 
-INSTALACIÓN
+## INSTALACIÓN
 -----------
 Para instalar el plugin desde un repositorio de GitHub, sigue estos pasos:
 
@@ -67,9 +62,7 @@ Para instalar el plugin desde un repositorio de GitHub, sigue estos pasos:
 8. Una vez instalado, asegúrate de que esté habilitado en la pestaña 'Instalados'. Deberías ver un nuevo icono en la barra de herramientas.
 
 
-=================
-  GUÍA DE USO
-=================
+#  GUÍA DE USO
 
 Al ejecutar el plugin, se abrirá una ventana con tres pestañas en la parte superior: DRO, DAI y DUMC. A la derecha, encontrarás un panel de ayuda que describe la funcionalidad de la pestaña activa.
 
@@ -94,7 +87,7 @@ Para que los algoritmos funcionen correctamente, tus datos deben cumplir con cie
      - Campo Identificador: Un campo único (puede ser numérico o alfanumérico) que identifique a cada punto.
 
 
-Herramienta 1: Determinación de Ruta Óptima (DRO)
+# Herramienta 1: Determinación de Ruta Óptima (DRO)
 -------------------------------------------------
 Esta herramienta calcula las rutas más rápidas entre cada par de puntos en una capa.
 
@@ -113,7 +106,7 @@ Esta herramienta calcula las rutas más rápidas entre cada par de puntos en una
     - COSTO_ACC: El costo total acumulado de la ruta.
 
 
-Herramienta 2: Determinación de Área de Influencia (DAI)
+# Herramienta 2: Determinación de Área de Influencia (DAI)
 --------------------------------------------------------
 Esta herramienta calcula el área de servicio (isócronas) desde uno o más puntos centrales.
 
@@ -134,7 +127,7 @@ Esta herramienta calcula el área de servicio (isócronas) desde uno o más punt
      - UMBRAL: El umbral de costo utilizado.
 
 
-Herramienta 3: Determinación de Utilidad Más Cercana (DUMC)
+# Herramienta 3: Determinación de Utilidad Más Cercana (DUMC)
 -----------------------------------------------------------
 Para cada "origen", esta herramienta encuentra el "destino" más cercano y calcula la ruta.
 
@@ -155,7 +148,7 @@ Para cada "origen", esta herramienta encuentra el "destino" más cercano y calcu
      - COSTO_RUTA: El costo total de la ruta.
 
 
-PARA DESARROLLADORES
+# PARA DESARROLLADORES
 --------------------
 El código fuente está estructurado de la siguiente manera para facilitar su comprensión y mantenimiento.
 
@@ -174,6 +167,6 @@ LICENCIA
 Este proyecto se distribuye bajo la licencia [...]. Ver el archivo LICENSE para más detalles.
 
 
-AUTOR
+# AUTORES
 -----
-- [Cristhian Cante, Fabian Fernandez] - Desarrollo inicial - [cccanteh@udistrital.edu.co, ...]
+- [Cristhian Cante, Fabian Fernandez] - Desarrollo inicial - [cccanteh@udistrital.edu.co, faafernandezc@udistrital.edu.co]
