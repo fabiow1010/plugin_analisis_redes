@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda - Análisis de Redes de Transporte</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2em auto;
+            padding: 2em;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        h1, h2, h3, h4 {
+            color: #005a9e;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        h1 { font-size: 2.2em; text-align: center; border-bottom: none; }
+        h2 { font-size: 1.8em; }
+        h3 { font-size: 1.4em; border-bottom-style: dashed; }
+        h4 { font-size: 1.2em; border-bottom: none; }
+        code {
+            background-color: #e9ecef;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        pre {
+            background-color: #e9ecef;
+            padding: 1em;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            font-size: 100%;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        strong {
+            color: #d9534f;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 15px;
+            margin: 1.5em 0;
+            border-radius: 4px;
+        }
+        .toc {
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 2em;
+        }
+        .toc ul {
+            padding-left: 15px;
+            list-style-type: none;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #0275d8;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Análisis de Redes de Transporte para QGIS</h1>
+
+    <div class="toc">
+        <h3>Tabla de Contenidos</h3>
+        <ul>
+            <li><a href="#descripcion">1. Descripción General</a></li>
+            <li><a href="#funcionalidades">2. Funcionalidades Principales</a></li>
+            <li><a href="#requisitos">3. Requisitos</a></li>
+            <li><a href="#instalacion">4. Instalación</a></li>
+            <li><a href="#guia-uso">5. Guía de Uso</a>
+                <ul>
+                    <li><a href="#preparacion">Preparación de Datos de Entrada</a></li>
+                    <li><a href="#dro">Herramienta 1: Determinación de Ruta Óptima (DRO)</a></li>
+                    <li><a href="#dai">Herramienta 2: Determinación de Área de Influencia (DAI)</a></li>
+                    <li><a href="#dumc">Herramienta 3: Determinación de Utilidad Más Cercana (DUMC)</a></li>
+                </ul>
+            </li>
+            <li><a href="#desarrolladores">6. Para Desarrolladores</a></li>
+            <li><a href="#licencia">7. Licencia</a></li>
+            <li><a href="#autor">8. Autor</a></li>
+        </ul>
+    </div>
+    
+    <hr>
+
+    <h2 id="descripcion">1. Descripción General</h2>
+    <p>Este plugin para QGIS provee un conjunto de herramientas potentes y fáciles de usar para realizar análisis de redes de transporte. Ideal para planificadores urbanos, logistas, geógrafos y cualquier profesional que trabaje con datos de redes viales.</p>
+    <p>Los algoritmos están construidos sobre librerías robustas como <strong>GeoPandas</strong> y <strong>NetworkX</strong> para garantizar un rendimiento y precisión óptimos.</p>
+
+    <h2 id="funcionalidades">2. Funcionalidades Principales</h2>
+    <ul>
+        <li><b>Determinación de Ruta Óptima (DRO):</b> Calcula la ruta más rápida (menor costo) entre múltiples pares de puntos a través de una red vial.</li>
+        <li><b>Determinación de Área de Influencia (DAI):</b> Genera isócronas o áreas de servicio, mostrando qué tan lejos se puede llegar desde un punto central dado un umbral de costo (tiempo o distancia).</li>
+        <li><b>Determinación de Utilidad Más Cercana (DUMC):</b> Para un conjunto de orígenes, identifica cuál de las "utilidades" o destinos disponibles es el más cercano y traza la ruta óptima hacia él.</li>
+    </ul>
+
+    <h2 id="requisitos">3. Requisitos</h2>
+    <ol>
+        <li><b>QGIS:</b> Versión <strong>3.16</strong> o superior.</li>
+        <li><b>Librerías de Python:</b> El plugin depende de varias librerías que deben estar instaladas en el ambiente de Python de QGIS.
+            <ul>
+                <li><code>geopandas</code></li>
+                <li><code>networkx</code></li>
+                <li><code>shapely</code></li>
+            </ul>
+        </li>
+    </ol>
+    <div class="note">
+        <p><b>Nota:</b> Para instalar estas librerías, puedes usar la terminal <b>OSGeo4W Shell</b> que viene con la instalación de QGIS en Windows, o acceder a la consola de Python dentro de QGIS. Un comando típico sería <code>pip install geopandas networkx shapely</code>.</p>
+    </div>
+
+    <h2 id="instalacion">4. Instalación</h2>
+    <p>Para instalar el plugin desde un repositorio de GitHub, sigue estos pasos:</p>
+    <ol>
+        <li>Descarga el repositorio como un archivo <code>.zip</code>.</li>
+        <li>Descomprime el archivo ZIP. Asegúrate de que la carpeta resultante contenga todos los archivos del plugin (<code>.py</code>, <code>.ui</code>, <code>metadata.txt</code>, etc.).</li>
+        <li>Abre QGIS.</li>
+        <li>Ve al menú <b>Complementos > Administrar e instalar complementos...</b></li>
+        <li>En la ventana de Complementos, selecciona la pestaña <b>Instalar desde ZIP</b>.</li>
+        <li>Haz clic en el botón <code>...</code> y navega hasta el archivo ZIP que descargaste.</li>
+        <li>Haz clic en <b>Instalar Complemento</b>.</li>
+        <li>Una vez instalado, asegúrate de que esté habilitado en la pestaña <b>Instalados</b>. Deberías ver un nuevo icono en la barra de herramientas.</li>
+    </ol>
+
+    <h2 id="guia-uso">5. Guía de Uso</h2>
+    <p>Al ejecutar el plugin, se abrirá una ventana con tres pestañas: <b>DRO</b>, <b>DAI</b> y <b>DUMC</b>. A la derecha, un panel de ayuda describe la funcionalidad de la pestaña activa.</p>
+
+    <h3 id="preparacion">Preparación de Datos de Entrada</h3>
+    <p>Para que los algoritmos funcionen correctamente, tus datos deben cumplir con ciertas condiciones.</p>
+
+    <h4>1. Capa de Vías (Líneas)</h4>
+    <p>Esta es la capa más importante y debe tener las siguientes características:</p>
+    <ul>
+        <li><b>Conectividad:</b> La red debe estar <strong>correctamente segmentada</strong>. Esto significa que cada tramo de calle entre dos intersecciones debe ser un objeto de línea separado. Donde las líneas se cruzan, debe existir un nodo (un punto de inicio/fin) que las conecte.</li>
+        <li><b>Atributos / Campos Requeridos:</b>
+            <ul>
+                <li><b>Campo de Costo:</b> Un campo numérico que representa el "costo" de viajar por ese segmento. Generalmente es el <strong>tiempo</strong> (en segundos, minutos, etc.) o la <strong>distancia</strong>. Las unidades deben ser consistentes en toda la capa.</li>
+                <li><b>Campo de Dirección:</b> Un campo numérico que define la direccionalidad del tráfico, usando los siguientes códigos:
+                    <ul>
+                        <li><code>0</code>: Tránsito en <strong>ambos sentidos</strong>.</li>
+                        <li><code>1</code>: Tránsito solo en el <strong>sentido de la digitalización</strong> (del nodo de inicio al nodo de fin de la línea).</li>
+                        <li><code>2</code>: Tránsito solo en el <strong>sentido contrario a la digitalización</strong> (del nodo de fin al nodo de inicio).</li>
+                        <li><code>3</code>: <strong>Restringido</strong>. No se puede transitar por este segmento.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>2. Capa de Puntos</h4>
+    <ul>
+        <li><b>Ubicación:</b> Los puntos (orígenes, destinos, etc.) deben estar ubicados <strong>sobre los nodos de la capa de vías</strong> (intersecciones o finales de línea). Si un punto no está exactamente sobre un nodo, el algoritmo lo "ajustará" (snap) al nodo más cercano de la red.</li>
+        <li><b>Atributos / Campos Requeridos:</b>
+            <ul>
+                <li><b>Campo Identificador:</b> Un campo único (puede ser numérico o alfanumérico) que identifique a cada punto.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h3 id="dro">Herramienta 1: Determinación de Ruta Óptima (DRO)</h3>
+    <p>Esta herramienta calcula las rutas más rápidas entre cada par de puntos en una capa.</p>
+    <h4>Entradas:</h4>
+    <ol>
+        <li><b>Capa de Vías:</b> Tu red vial preparada.</li>
+        <li><b>Campo Dirección:</b> El campo que define la direccionalidad.</li>
+        <li><b>Campo Costo:</b> El campo con el costo de desplazamiento.</li>
+        <li><b>Capa de Puntos:</b> Capa con al menos 2 puntos.</li>
+        <li><b>Campo Identificador:</b> El ID único para los puntos.</li>
+        <li><b>Rutas Óptimas (DRO):</b> La ruta para guardar el archivo de salida. Si se deja en blanco, se creará una capa temporal.</li>
+    </ol>
+    <h4>Salida:</h4>
+    <p>Una capa de líneas (<code>.shp</code>) que contiene todas las rutas óptimas calculadas. Sus atributos son:</p>
+    <ul>
+        <li><code>ORIGEN_ID</code>: Identificador del punto de inicio.</li>
+        <li><code>DESTINO_ID</code>: Identificador del punto de llegada.</li>
+        <li><code>COSTO_ACC</code>: El costo total acumulado de la ruta.</li>
+    </ul>
+
+    <h3 id="dai">Herramienta 2: Determinación de Área de Influencia (DAI)</h3>
+    <p>Esta herramienta calcula el área de servicio (isócronas) desde uno o más puntos centrales.</p>
+    <h4>Entradas:</h4>
+    <ol>
+        <li><b>Capa de Vías, Campo Dirección, Campo Costo:</b> Igual que en DRO.</li>
+        <li><b>Capa de Puntos (Centrales):</b> Los puntos desde los cuales se calculará el área.</li>
+        <li><b>Campo Identificador:</b> El ID único para los puntos centrales.</li>
+        <li><b>Umbral de Costo:</b> El valor máximo de costo (ej. 300 segundos para un área de 5 minutos).</li>
+        <li><b>Archivos de Salida:</b> Rutas para guardar los resultados de líneas y polígonos. Si se dejan en blanco, se crearán capas temporales.</li>
+    </ol>
+    <h4>Salidas:</h4>
+    <ul>
+        <li><b>Capa de Líneas (<code>DAI_linea</code>):</b> Muestra todas las rutas alcanzables desde cada punto central sin exceder el umbral. Sus atributos son:
+            <ul>
+                <li><code>ORIGEN_ID</code>: El ID del punto central.</li>
+                <li><code>DEST_NODO_ID</code>: El ID interno del nodo final de la ruta.</li>
+                <li><code>COSTO_ACC</code>: El costo acumulado de esa ruta específica.</li>
+            </ul>
+        </li>
+        <li><b>Capa de Polígonos (<code>DAI_poligono</code>):</b> Un polígono que une los puntos finales de las rutas para visualizar el área de influencia total. Sus atributos son:
+            <ul>
+                <li><code>ORIGEN_ID</code>: El ID del punto central asociado al área.</li>
+                <li><code>UMBRAL</code>: El umbral de costo utilizado.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3 id="dumc">Herramienta 3: Determinación de Utilidad Más Cercana (DUMC)</h3>
+    <p>Para cada "origen", esta herramienta encuentra el "destino" más cercano y calcula la ruta.</p>
+    <h4>Entradas:</h4>
+    <ol>
+        <li><b>Capa de Vías, Campo Dirección, Campo Costo:</b> Igual que en DRO.</li>
+        <li><b>Capa de Puntos 1 (Orígenes):</b> La capa de puntos desde donde se iniciará la búsqueda.</li>
+        <li><b>Capa de Puntos 2 (Utilidades):</b> La capa de posibles destinos.</li>
+        <li><b>Archivos de Salida:</b> Rutas para guardar los puntos y las rutas resultantes. Si se dejan en blanco, se crearán capas temporales.</li>
+    </ol>
+    <h4>Salidas:</h4>
+    <ul>
+        <li><b>Capa de Puntos (<code>DUMC_punto</code>):</b> Una capa que contiene una copia de los puntos de la capa de Utilidades que resultaron ser los más cercanos para algún origen. Sus atributos son:
+            <ul>
+                <li><code>ID_ORIGEN</code>: El ID del punto de origen.</li>
+                <li><code>ID_UTILIDAD</code>: El ID de la utilidad más cercana encontrada.</li>
+                <li><code>COSTO_MIN</code>: El costo para llegar a esa utilidad.</li>
+            </ul>
+        </li>
+        <li><b>Capa de Líneas (<code>DUMC_rutas</code>):</b> Las rutas óptimas desde cada origen hasta su utilidad más cercana. Sus atributos son:
+            <ul>
+                <li><code>ID_ORIGEN</code>: El ID del punto de origen.</li>
+                <li><code>ID_UTILIDAD</code>: El ID de la utilidad de destino.</li>
+                <li><code>COSTO_RUTA</code>: El costo total de la ruta.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2 id="desarrolladores">6. Para Desarrolladores</h2>
+    <p>El código fuente está estructurado de la siguiente manera para facilitar su comprensión y mantenimiento.</p>
+    <pre><code>mi_plugin_analisis_redes/
+├── __init__.py                 # Inicializador del plugin
+├── metadata.txt                # Información del plugin para QGIS
+├── main_plugin.py              # Clase principal, maneja la GUI
+├── plugin_dialog.py            # Lógica y conexiones del diálogo
+├── plugin_dialog_base.ui       # Archivo de interfaz de Qt Designer
+├── network_algorithms.py       # Contiene toda la lógica de análisis geoespacial
+└── icon.png                    # Icono del plugin
+</code></pre>
+
+    <h2 id="licencia">7. Licencia</h2>
+    <p>Este proyecto se distribuye bajo la licencia [...]. Ver el archivo <code>LICENSE</code> para más detalles.</p>
+
+    <h2 id="autor">8. Autor</h2>
+    <p><b>Cristhian Cante, Fabian Fernandez</b> - <i>Desarrollo inicial</i> - <code>cccanteh@udistrital.edu.co</code></p>
+</div>
+
+</body>
+</html>

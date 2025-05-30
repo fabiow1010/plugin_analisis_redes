@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MiPluginAnalisisRedesDialogBase</class>
+ <widget class="QDialog" name="MiPluginAnalisisRedesDialogBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Plugin de Análisis de Redes de Transporte</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_Main">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_Top" stretch="2,1">
+     <item>
+      <widget class="QTabWidget" name="tabWidgetMain">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tabDRO">
+        <attribute name="title">
+         <string>DRO</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_DRO">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_DRO_Inputs">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_dro_vias">
+             <property name="text">
+              <string>Capa de vías:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_dro_vias"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="mPushButton_dro_vias_browse">
+             <property name="toolTip">
+              <string>Examinar capa de vías en el disco</string>
+             </property>
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_dro_direccion">
+             <property name="text">
+              <string>Campo Dirección:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dro_direccion"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_dro_costo">
+             <property name="text">
+              <string>Campo Costo:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dro_costo"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_dro_puntos">
+             <property name="text">
+              <string>Capa de Puntos:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_dro_puntos"/>
+           </item>
+           <item row="3" column="2">
+            <widget class="QPushButton" name="mPushButton_dro_puntos_browse">
+             <property name="toolTip">
+              <string>Examinar capa de puntos en el disco</string>
+             </property>
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_dro_id_puntos">
+             <property name="text">
+              <string>Campo Identificador Puntos:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dro_id_puntos"/>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_dro_salida">
+             <property name="text">
+              <string>Rutas Óptimas (DRO):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1" colspan="2">
+            <widget class="QgsFileWidget" name="mFileWidget_dro_salida"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="mCheckBox_dro_abrir_salida">
+           <property name="text">
+            <string>Abrir archivo de salida después de ejecutar</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_DRO">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_run_dro">
+           <property name="text">
+            <string>Ejecutar DRO</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabDAI">
+        <attribute name="title">
+         <string>DAI</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_DAI">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_DAI_Inputs">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_dai_vias">
+             <property name="text">
+              <string>Capa de vías:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_dai_vias"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="mPushButton_dai_vias_browse">
+             <property name="toolTip">
+              <string>Examinar capa de vías en el disco</string>
+             </property>
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_dai_direccion">
+             <property name="text">
+              <string>Campo Dirección:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dai_direccion"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_dai_costo">
+             <property name="text">
+              <string>Campo Costo:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dai_costo"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_dai_puntos">
+             <property name="text">
+              <string>Capa de Puntos (Centrales):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_dai_puntos"/>
+           </item>
+           <item row="3" column="2">
+            <widget class="QPushButton" name="mPushButton_dai_puntos_browse">
+             <property name="toolTip">
+              <string>Examinar capa de puntos en el disco</string>
+             </property>
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_dai_id_puntos">
+             <property name="text">
+              <string>Campo Identificador Puntos:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dai_id_puntos"/>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_dai_umbral">
+             <property name="text">
+              <string>Umbral de Costo (tiempo):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1" colspan="2">
+            <widget class="QgsDoubleSpinBox" name="mDoubleSpinBox_dai_umbral">
+             <property name="decimals">
+              <number>2</number> </property>
+             <property name="maximum">
+              <double>999999.99</double> </property>
+             <property name="minimum">
+              <double>0.0</double> </property>
+             <property name="value">
+              <double>0.0</double> </property>
+             <property name="singleStep">
+              <double>1.0</double> </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_dai_salida_lineas">
+             <property name="text">
+              <string>Área Influencia Líneas (DAI_linea):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1" colspan="2">
+            <widget class="QgsFileWidget" name="mFileWidget_dai_salida_lineas"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="mCheckBox_dai_abrir_lineas">
+           <property name="text">
+            <string>Abrir archivo de líneas después de ejecutar</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayout_DAI_Outputs_Poly">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_dai_salida_poligono">
+             <property name="text">
+              <string>Área Influencia Polígono (DAI_poligono):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QgsFileWidget" name="mFileWidget_dai_salida_poligono"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="mCheckBox_dai_abrir_poligono">
+           <property name="text">
+            <string>Abrir archivo de polígono después de ejecutar</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_DAI">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_run_dai">
+           <property name="text">
+            <string>Ejecutar DAI</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabDUMC">
+        <attribute name="title">
+         <string>DUMC</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_DUMC">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_DUMC_Inputs">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_dumc_vias">
+             <property name="text">
+              <string>Capa de vías:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_dumc_vias"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="mPushButton_dumc_vias_browse">
+             <property name="toolTip">
+              <string>Examinar capa de vías en el disco</string>
+             </property>
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_dumc_direccion">
+             <property name="text">
+              <string>Campo Dirección:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dumc_direccion"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_dumc_costo">
+             <property name="text">
+              <string>Campo Costo:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dumc_costo"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_dumc_puntos1">
+             <property name="text">
+              <string>Capa de Puntos 1 (Orígenes):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_dumc_puntos1"/>
+           </item>
+           <item row="3" column="2">
+            <widget class="QPushButton" name="mPushButton_dumc_puntos1_browse">
+             <property name="toolTip">
+              <string>Examinar capa de puntos 1 en el disco</string>
+             </property>
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_dumc_id_puntos1">
+             <property name="text">
+              <string>Identificador Puntos 1:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dumc_id_puntos1"/>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_dumc_puntos2">
+             <property name="text">
+              <string>Capa de Puntos 2 (Utilidades):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_dumc_puntos2"/>
+           </item>
+           <item row="5" column="2">
+            <widget class="QPushButton" name="mPushButton_dumc_puntos2_browse">
+             <property name="toolTip">
+              <string>Examinar capa de puntos 2 en el disco</string>
+             </property>
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_dumc_id_puntos2">
+             <property name="text">
+              <string>Identificador Puntos 2:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1" colspan="2">
+            <widget class="QgsFieldComboBox" name="mFieldComboBox_dumc_id_puntos2"/>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_dumc_salida_puntos">
+             <property name="text">
+              <string>Utilidades más Cercanas (DUMC_punto):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1" colspan="2">
+            <widget class="QgsFileWidget" name="mFileWidget_dumc_salida_puntos"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="mCheckBox_dumc_abrir_puntos">
+           <property name="text">
+            <string>Abrir archivo de puntos después de ejecutar</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayout_DUMC_Outputs_Routes">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_dumc_salida_rutas">
+             <property name="text">
+              <string>Rutas a Utilidades (DUMC_rutas):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QgsFileWidget" name="mFileWidget_dumc_salida_rutas"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="mCheckBox_dumc_abrir_rutas">
+           <property name="text">
+            <string>Abrir archivo de rutas después de ejecutar</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_DUMC">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_run_dumc">
+           <property name="text">
+            <string>Ejecutar DUMC</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextBrowser" name="textBrowser_descripcion">
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox_main">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Close</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsDoubleSpinBox</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>qgsdoublespinbox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsFieldComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsfieldcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsFileWidget</class>
+   <extends>QWidget</extends>
+   <header>qgsfilewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsmaplayercombobox.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox_main</sender>
+   <signal>rejected()</signal>
+   <receiver>MiPluginAnalisisRedesDialogBase</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox_main</sender>
+   <signal>accepted()</signal>
+   <receiver>MiPluginAnalisisRedesDialogBase</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

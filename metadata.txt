@@ -1,0 +1,12 @@
+[general]
+name=Analisis de Redes de Transporte
+qgisMinimumVersion=3.16
+description=Un plugin para realizar analisis de rutas optimas, areas de influencia y utilidad mas cercana en redes de transporte.
+version=0.1.0
+author=Tu Nombre Aqui
+email=tu_email@example.com
+about=Este plugin provee herramientas para el analisis de redes de transporte, incluyendo determinacion de ruta optima (DRO), area de influencia (DAI), y utilidad mas cercana (DUMC).
+
+[Python]
+plugin_dependencies=
+ClassFactory=classFactory
