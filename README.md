@@ -168,5 +168,4 @@ Este proyecto se distribuye bajo la licencia [...]. Ver el archivo LICENSE para 
 
 
 ### AUTORES
------
 - [Cristhian Cante, Fabian Fernandez] - Desarrollo inicial - [cccanteh@udistrital.edu.co, faafernandezc@udistrital.edu.co]
